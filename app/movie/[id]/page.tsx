@@ -1,14 +1,9 @@
 import { notFound } from 'next/navigation';
-import axios from 'axios';
 import Image from 'next/image';
 import { MoviePoster } from '@/components';
 import { fetchMoviesDetail } from '@/lib/moviesDetail';
 
-interface PageProps {
-    params: { id: string };
-}
-
-export default async function MovieDetailPage({ params }: PageProps) {
+export default async function MovieDetailPage({ params }: { params: { id: string } }) {
     const { id } = params;
 
     try {
