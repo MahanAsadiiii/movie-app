@@ -15,7 +15,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
 
 
     return (
-        <div className='flex flex-col gap-2 h-full cursor-default'>
+        <div className='flex flex-col gap-2 h-full md:h-[355px] cursor-default'>
             <MoviePoster
                 src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                 alt={movie.title}

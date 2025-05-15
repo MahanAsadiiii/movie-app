@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { MoviePoster } from '@/components';
 import { fetchMoviesDetail } from '@/lib/moviesDetail';
+import Link from 'next/link';
 
 
 type PageProps = {
@@ -23,8 +24,11 @@ export default async function MovieDetailPage({ params }: PageProps) {
         const movieRevenue = movie.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
         return (
-            <section className="flex items-center justify-between gap-4 my-5">
-                <div className="w-1/2 flex justify-center">
+            <section className="flex items-start justify-between gap-4 my-5">
+                <div className="w-1/2 flex flex-col items-center gap-5 ">
+                    <div className="flex justify-start w-full">
+                        <Link href={'/'} className='capitalize bg-neutral-600/50 font-bold px-4 py-2 rounded-md cursor-pointer hover:bg-neutral-400'>back</Link>
+                    </div>
                     <MoviePoster
                         src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
                         alt={movie.title}

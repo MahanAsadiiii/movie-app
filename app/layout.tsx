@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${roboto.variable} ${robotoMono.variable} antialiased`}
       >
         <div className="flex justify-center">
-          <div className="max-w-6xl">
+          <div className="md:w-5xl">
             {children}
           </div>
         </div>
