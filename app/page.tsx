@@ -6,9 +6,14 @@ import { MovieInterface } from '@/types/movie';
 import { searchMovie } from '@/lib/searchMovie';
 import Link from 'next/link';
 
-export default async function Home({ searchParams }: { searchParams: { page?: string, query?: string } }) {
-  const page = Number(searchParams.page) || 1;
-  const query = searchParams.query;
+type PageProps = {
+  searchParams: Promise<{ page?: string, query?: string }>;
+};
+
+export default async function Home({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
+  const page = Number(resolvedSearchParams.page) || 1;
+  const query = resolvedSearchParams.query;
   let movies = [];
 
   //depeneds on situation, showing movie list 
@@ -19,7 +24,7 @@ export default async function Home({ searchParams }: { searchParams: { page?: st
   }
 
   return (
-    <section className="flex flex-col my-5 px-5 md:px-2 gap-3">
+    <section className="flex flex-col my-5 px-4 md:px-2 gap-3">
       <div className="flex justify-between items-start gap-5">
         <Link href={'/'} className='cursor-pointer w-1/2'>
           <h1 className="text-2xl md:text-4xl font-bold mb-4 capitalize ">movie website</h1>
