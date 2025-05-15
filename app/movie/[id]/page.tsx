@@ -3,8 +3,16 @@ import Image from 'next/image';
 import { MoviePoster } from '@/components';
 import { fetchMoviesDetail } from '@/lib/moviesDetail';
 
-export default async function MovieDetailPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+
+type PageProps = {
+    params: {
+        id: string;
+    };
+};
+
+
+export default async function MovieDetailPage({ params }: PageProps) {
+    const { id } = await params;
 
     try {
         const movie = await fetchMoviesDetail(id)
@@ -118,6 +126,7 @@ export default async function MovieDetailPage({ params }: { params: { id: string
         );
     } catch (error) {
         // show 404 if movie is not found
+        console.log(error);
         notFound();
     }
 }
