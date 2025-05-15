@@ -15,7 +15,7 @@ export default async function Home({ searchParams }: PageProps) {
   const page = Number(resolvedSearchParams.page) || 1;
   const query = resolvedSearchParams.query;
   let movies = [];
-  const genres = null
+  // const genres = null
 
   //depeneds on situation, showing movie list 
   if (query) {
