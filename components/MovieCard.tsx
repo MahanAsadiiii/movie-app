@@ -1,6 +1,5 @@
 import React from 'react'
-import { MoviePoster } from '@/components';
-import Link from 'next/link';
+import { MoviePoster, PrimaryButton } from '@/components';
 import { MovieInterface } from '@/types/movie';
 
 interface MovieCardProps {
@@ -8,26 +7,22 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
-
-    const shortTitle = movie.title.length > 18 ? movie.title.slice(0, 18) + "..." : movie.title;
+    //for better UI slice words after 14 length and round rate and show only year of release date
+    const shortTitle = movie.title.length > 14 ? movie.title.slice(0, 14) + "..." : movie.title;
     const movieRate = movie.vote_average ? movie.vote_average.toFixed(1) : '-'
     const releaseYear = movie.release_date ? movie.release_date.split('-')[0] : '-'
 
 
     return (
-        <div className='flex flex-col gap-2 h-full md:h-[355px] cursor-default'>
+        <div className='flex flex-col gap-2 md:h-[355px] cursor-default'>
             <MoviePoster
-                src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
                 buttonLink={`/movie/${movie.id}`}
                 buttonContent='more details'
             />
             <div className="flex flex-col justify-center gap-2">
-                <Link href={`/movie/${movie.id}`}>
-                    <h3 className="text-white text-center text-md font-semibold bg-neutral-600/50 rounded-md py-1">
-                        {shortTitle}
-                    </h3>
-                </Link>
+                <PrimaryButton context={shortTitle} href={`/movie/${movie.id}`} />
                 <div className="flex justify-evenly">
                     <h6>{releaseYear}</h6>
                     <span>

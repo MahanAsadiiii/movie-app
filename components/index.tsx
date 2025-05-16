@@ -1,2 +1,6 @@
 export * from './MovieCard'
 export * from './MoviePoster'
+export * from './GenreFilter'
+export * from './Navigator'
+export * from './PrimaryButton'
+export * from './BackButton'

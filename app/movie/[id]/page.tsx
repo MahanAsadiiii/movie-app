@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { MoviePoster } from '@/components';
+import { BackButton, MoviePoster } from '@/components';
 import { fetchMoviesDetail } from '@/lib/moviesDetail';
-import Link from 'next/link';
+
 
 
 type PageProps = {
@@ -11,6 +11,7 @@ type PageProps = {
 
 
 export default async function MovieDetailPage({ params }: PageProps) {
+    // cause its SSR, get Params from url and pass it to fetchmovieDetail to get data from it and show in UI  
     const resolvedParams = await params;
     const id = resolvedParams.id;
 
@@ -24,16 +25,17 @@ export default async function MovieDetailPage({ params }: PageProps) {
         const movieRevenue = movie.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
         return (
-            <section className="flex items-start justify-between gap-4 my-5">
+            <section className="flex items-stretch justify-between gap-8 py-5 cursor-default min-h-dvh ">
                 <div className="w-1/2 flex flex-col items-center gap-5 ">
                     <div className="flex justify-start w-full">
-                        <Link href={'/'} className='capitalize bg-neutral-600/50 font-bold px-4 py-2 rounded-md cursor-pointer hover:bg-neutral-400'>back</Link>
+                        {/* for navigate to previous page I use this component */}
+                        <BackButton />
                     </div>
                     <MoviePoster
-                        src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         alt={movie.title}
                         buttonLink={movie.homepage}
-                        buttonContent='explore movie website'
+                        buttonContent="explore movie's website"
                     />
                 </div>
                 <section className="flex flex-col gap-6 w-1/2 bas">
@@ -48,7 +50,7 @@ export default async function MovieDetailPage({ params }: PageProps) {
                     </div>
                     {/* movie discription */}
                     <p className='font-medium text-lg text-justify italic'>{movie.overview}</p>
-                    {/* movie informatio */}
+                    {/* movie information */}
                     <div className="flex justify-start gap-5">
                         <div className="flex flex-col gap-2">
                             <h5 className='font-bold'>Vote Average:

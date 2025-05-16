@@ -1,8 +1,8 @@
 "use client"
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import alternativeImage from '@/public/assets/movie(1).png'
+import { PrimaryButton } from './PrimaryButton';
 
 type MoviePosterProps = {
     src: string;
@@ -18,7 +18,7 @@ const MoviePoster = ({ src, alt, buttonLink, buttonContent }: MoviePosterProps) 
     return (
 
         <div
-            className={`relative group h-full`}
+            className={`relative flex group h-full w-full`}
         >
             {/* skeleton for loading time */}
             {isLoading && (
@@ -26,31 +26,28 @@ const MoviePoster = ({ src, alt, buttonLink, buttonContent }: MoviePosterProps) 
             )}
 
             {/* show button while hovering */}
-            <div className='absolute hidden group-hover:flex group-hover:bg-black/70 justify-center items-center text-xl font-bold inset-0 text-white top-0 left-0 '>
-                <Link href={buttonLink} className='font-medium text-lg px-3 py-1.5 bg-neutral-600 rounded-md capitalize cursor-pointer'>
-                    {buttonContent}
-                </Link>
+            <div className='absolute hidden group-hover:flex group-hover:bg-black/70 justify-center items-center inset-0 text-white top-0 left-0 z-10'>
+                <PrimaryButton context={buttonContent} href={buttonLink} />
             </div>
-            <div className="flex items-center">
-                {src === 'https://image.tmdb.org/t/p/w300null'
+            <div className="flex items-center h-full">
+                {/* showing alternative Image when movie doesnt have image */}
+                {src === 'https://image.tmdb.org/t/p/w500null'
                     ?
-                    <Image src={alternativeImage} alt='' fill onLoad={() => setIsLoading(false)} className={`${isLoading ? 'opacity-0' : 'opacity-100'}`} />
+                    <Image src={alternativeImage}
+                        alt='alternative Image'
+                        fill
+                        onLoad={() => setIsLoading(false)}
+                        className={`w-full h-full ${isLoading ? 'opacity-0' : 'opacity-100'}`} />
                     :
                     <Image
                         src={src}
                         alt={alt}
-                        height={0}
-                        width={200}
                         priority
-                        // style={{
-                        //     width: '100%',
-                        //     height: 'auto',
-                        // }}
-                        className={` rounded-lg transition-opacity duration-500 ease-in-out h-full w-full ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                        className={` rounded-lg transition-opacity duration-500 ease-in-out w-full h-full ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                         onLoad={() => setIsLoading(false)}
                         unoptimized
+                        fill
                     />
-
                 }
             </div>
         </div >
