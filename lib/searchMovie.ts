@@ -8,8 +8,12 @@ export const searchMovie = async (query: string) => {
       },
     });
     return response.data.results;
-  } catch (error: any) {
-    console.error("Error getting film:", error?.message || error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error getting film:", error.message);
+    } else {
+      console.error("Error getting film:", error);
+    }
     throw new Error("Error getting film");
   }
 };

@@ -9,8 +9,12 @@ export const fetchMoviesList = async (page: number, genre?: string) => {
       },
     });
     return response.data.results;
-  } catch (error: any) {
-    console.error("Error getting movie list:", error?.message || error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error getting movie list:", error.message);
+    } else {
+      console.error("Error getting movie list:", error);
+    }
     throw new Error("Error getting movie list");
   }
 };
