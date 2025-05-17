@@ -7,7 +7,7 @@ type PrimaryButtonType = {
 // make a global button for standardize UI
 const PrimaryButton = ({ href, context }: PrimaryButtonType) => {
     return (
-        <Link href={href} className='text-center text-md font-bold ease-in-out duration-200 bg-neutral-600/50 capitalize px-4 py-1.5 rounded-md cursor-pointer hover:bg-neutral-400'>
+        <Link href={href} className='text-center text-sm md:text-base font-bold ease-in-out duration-200 bg-neutral-600/50 capitalize px-2 md:px-4 py-1.5 rounded-md cursor-pointer hover:bg-neutral-400'>
             {context}
         </Link>
     )

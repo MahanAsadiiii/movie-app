@@ -31,10 +31,10 @@ export default async function Home({ searchParams }: PageProps) {
     <section className="flex flex-col my-5 px-4 md:px-2 gap-5">
 
       <div className="flex justify-between flex-wrap items-start ">
-        <Link href={'/'} className='cursor-pointer w-1/2'>
+        <Link href={'/'} className='cursor-pointer'>
           <h1 className="text-2xl md:text-4xl font-bold mb-4 capitalize ">movie website</h1>
         </Link>
-        <div className="flex gap-3">
+        <div className="flex flex-col-reverse md:flex-row gap-4">
           {/* by submite this form it shows query in params after that page gets params and pass to function to show movies */}
           <form method="GET" className="flex gap-1">
             <input
@@ -58,7 +58,7 @@ export default async function Home({ searchParams }: PageProps) {
       {/* showing movies in this section */}
       <section>
         {movies.length ?
-          <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-col-5 gap-y-8 md:gap-x-4   ">
+          <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-col-5 gap-y-8 gap-x-4  ">
             {movies.map((movie: MovieInterface) => (
               <MovieCard movie={movie} key={movie.id} />
             ))}

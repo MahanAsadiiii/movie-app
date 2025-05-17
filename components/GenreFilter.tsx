@@ -40,7 +40,7 @@ const GenreFilter = ({ genres }: GenreFilterProps) => {
             name="genre"
             value={genreParam}
             onChange={handleChange}
-            className="border border-neutral-600 rounded  bg-black"
+            className="border border-neutral-600 rounded py-1 bg-black"
         >
             <option value="">All genres</option>
             {genres?.map((item: GenreInterface) => (

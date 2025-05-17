@@ -25,8 +25,8 @@ export default async function MovieDetailPage({ params }: PageProps) {
         const movieRevenue = movie.revenue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
         return (
-            <section className="flex items-stretch justify-between gap-8 py-5 cursor-default min-h-dvh ">
-                <div className="w-1/2 flex flex-col items-center gap-5 ">
+            <section className="flex flex-col md:flex-row items-stretch justify-between gap-8 px-3 md:px-0 py-5 cursor-default min-h-dvh ">
+                <div className="md:w-1/2 flex flex-col items-center gap-5 ">
                     <div className="flex justify-start w-full">
                         {/* for navigate to previous page I use this component */}
                         <BackButton />
@@ -38,11 +38,11 @@ export default async function MovieDetailPage({ params }: PageProps) {
                         buttonContent="explore movie's website"
                     />
                 </div>
-                <section className="flex flex-col gap-6 w-1/2 bas">
+                <section className="flex flex-col gap-6 md:w-1/2 ">
                     <div className="flex flex-col gap-3">
                         <h1 className='text-4xl font-extrabold'>{movie.title}</h1>
                         <h3 className='text-lg font-extrabold italic'>{movie.tagline}</h3>
-                        <ul className='flex gap-4'>
+                        <ul className='flex gap-4 flex-wrap'>
                             {movie.genres.map((item: { id: number, name: string }) => (
                                 <li key={item.id} className='text-sm text-amber-500 border-amber-500 border-1 font-semibold bg-neutral-600/50 px-4 py-1 rounded-md'>{item.name}</li>
                             ))}
